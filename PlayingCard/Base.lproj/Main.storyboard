@@ -16,16 +16,22 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="Bio-QX-JFv" customClass="PlayingCardView" customModule="PlayingCard" customModuleProvider="target">
-                                <rect key="frame" x="20" y="44" width="374" height="818"/>
+                                <rect key="frame" x="20" y="154" width="374" height="598"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="Bio-QX-JFv" secondAttribute="height" multiplier="5:8" id="O04-Cb-xE4"/>
+                                    <constraint firstAttribute="width" priority="750" constant="800" id="hqQ-3L-Tac"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemTealColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Bio-QX-JFv" secondAttribute="bottom" id="ack-FF-c1S"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Bio-QX-JFv" secondAttribute="trailing" constant="20" id="eEH-cb-vwj"/>
-                            <constraint firstItem="Bio-QX-JFv" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="g3u-L2-2Xq"/>
-                            <constraint firstItem="Bio-QX-JFv" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="vfF-T5-5tu"/>
+                            <constraint firstItem="Bio-QX-JFv" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="LvR-Fw-g5R"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="Bio-QX-JFv" secondAttribute="bottom" constant="20" id="ack-FF-c1S"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Bio-QX-JFv" secondAttribute="trailing" constant="20" id="eEH-cb-vwj"/>
+                            <constraint firstItem="Bio-QX-JFv" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="g3u-L2-2Xq"/>
+                            <constraint firstItem="Bio-QX-JFv" firstAttribute="top" relation="greaterThanOrEqual" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="20" id="vfF-T5-5tu"/>
+                            <constraint firstItem="Bio-QX-JFv" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="yY3-E9-5Pb"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>

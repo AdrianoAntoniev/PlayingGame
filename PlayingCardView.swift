@@ -9,7 +9,7 @@
 import UIKit
 
 class PlayingCardView: UIView {
-    var rank: Int = 5 { didSet { setNeedsDisplay(); setNeedsLayout() } }
+    var rank: Int = 8 { didSet { setNeedsDisplay(); setNeedsLayout() } }
     var suit: String = "♥️" { didSet { setNeedsDisplay(); setNeedsLayout() } }
     var isFaceUp: Bool = true { didSet { setNeedsDisplay(); setNeedsLayout() } }
     
@@ -44,11 +44,62 @@ class PlayingCardView: UIView {
         label.isHidden = !isFaceUp
     }
     
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        setNeedsDisplay()
+        setNeedsLayout()
+    }
+    
     override func layoutSubviews() {
         super.layoutSubviews()
         
         configureCornerLabel(upperLeftCornerLabel)
         upperLeftCornerLabel.frame.origin = bounds.origin.offsetBy(dx: cornerOffset, dy: cornerOffset)
+        
+        configureCornerLabel(lowerRightCornerLabel)
+        lowerRightCornerLabel.transform = CGAffineTransform.identity.translatedBy(x: lowerRightCornerLabel.frame.size.width, y: lowerRightCornerLabel.frame.size.height).rotated(by: CGFloat.pi)
+        lowerRightCornerLabel.frame.origin = CGPoint(x: bounds.maxX, y: bounds.maxY)
+            .offsetBy(dx: -cornerOffset, dy: -cornerOffset)
+            .offsetBy(dx: -lowerRightCornerLabel.frame.size.width, dy: -lowerRightCornerLabel.frame.size.height)
+    }
+    
+    private func drawPips() {
+        let pipsPerRowForRank = [[0], [1], [1,1], [1,1,1], [2,2], [2,1,2], [2,2,2], [2,1,2,2], [2,2,2,2], [2,2,1,2,2], [2,2,2,2,2]]
+        
+        func createPipString(thatFits pipRect: CGRect) -> NSAttributedString {
+            let maxVerticalPipCount = CGFloat(pipsPerRowForRank.reduce(0) { max($1.count, $0)})
+            let maxHorizontalPipCount = CGFloat(pipsPerRowForRank.reduce(0) { max($1.max() ?? 0, $0) })
+            let verticalPipRowSpacing = pipRect.size.height / maxVerticalPipCount
+            let attemptedPipString = centerAttribuitedString(suit, fontSize: verticalPipRowSpacing)
+            let probablyOkayPipStringFontSize = verticalPipRowSpacing / (attemptedPipString.size().height / verticalPipRowSpacing)
+            let probablyOkayPipString = centerAttribuitedString(suit, fontSize: probablyOkayPipStringFontSize)
+            if probablyOkayPipString.size().width > pipRect.size.width /  maxHorizontalPipCount {
+                return centerAttribuitedString(suit, fontSize: probablyOkayPipStringFontSize)
+            } else {
+                return probablyOkayPipString
+            }
+        }
+        
+        if pipsPerRowForRank.indices.contains(rank) {
+            let pipsPerRow = pipsPerRowForRank[rank]
+            var pipRect = bounds.insetBy(dx: cornerOffset, dy: cornerOffset).insetBy(dx: cornerString.size().width, dy: cornerString.size().height / 2)
+            let pipString = createPipString(thatFits: pipRect)
+            let pipRowSpacing = pipRect.size.height / CGFloat(pipsPerRow.count)
+            pipRect.size.height = pipString.size().height
+            pipRect.origin.y += (pipRowSpacing - pipRect.size.height) / 2
+            
+            for pipCount in pipsPerRow {
+                switch pipCount {
+                case 1:
+                    pipString.draw(in: pipRect)
+                case 2:
+                    pipString.draw(in: pipRect.leftHalf)
+                    pipString.draw(in: pipRect.rightHalf)
+                default:
+                    break
+                }
+                pipRect.origin.y += pipRowSpacing
+            }
+        }
     }
     
     override func draw(_ rect: CGRect) {
@@ -76,6 +127,13 @@ class PlayingCardView: UIView {
         UIColor.white.setFill()
         roundedRect.fill()
         
+        
+        //TODO: Aqui para ficar igual no exemplo do Paul Hegarty, tem que baixar as imagens que ele usa. No caso esse if nao vai dar certo pra valetes, reis e damas.
+        if let faceCardImage = UIImage(named: rankString+suit) {
+            faceCardImage.draw(in: bounds.zoom(by: SizeRatio.faceCardImageSizeToBoundsSize))
+        } else {
+            drawPips()
+        }
     }
 }
 
