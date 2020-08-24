@@ -8,9 +8,13 @@
 
 import UIKit
 
+@IBDesignable
 class PlayingCardView: UIView {
+    @IBInspectable
     var rank: Int = 8 { didSet { setNeedsDisplay(); setNeedsLayout() } }
+    @IBInspectable
     var suit: String = "♥️" { didSet { setNeedsDisplay(); setNeedsLayout() } }
+    @IBInspectable
     var isFaceUp: Bool = true { didSet { setNeedsDisplay(); setNeedsLayout() } }
     
     private func centerAttribuitedString(_ string: String, fontSize: CGFloat) -> NSAttributedString {
@@ -128,11 +132,17 @@ class PlayingCardView: UIView {
         roundedRect.fill()
         
         
-        //TODO: Aqui para ficar igual no exemplo do Paul Hegarty, tem que baixar as imagens que ele usa. No caso esse if nao vai dar certo pra valetes, reis e damas.
-        if let faceCardImage = UIImage(named: rankString+suit) {
-            faceCardImage.draw(in: bounds.zoom(by: SizeRatio.faceCardImageSizeToBoundsSize))
+        if isFaceUp {
+            //TODO: Aqui para ficar igual no exemplo do Paul Hegarty, tem que baixar as imagens que ele usa. No caso esse if nao vai dar certo pra valetes, reis e damas.
+            if let faceCardImage = UIImage(named: rankString+suit, in: Bundle(for: self.classForCoder), compatibleWith: traitCollection) {
+                faceCardImage.draw(in: bounds.zoom(by: SizeRatio.faceCardImageSizeToBoundsSize))
+            } else {
+                drawPips()
+            }
         } else {
-            drawPips()
+            if let cardBackImage = UIImage(named: "cardBack", in: Bundle(for: self.classForCoder), compatibleWith: traitCollection) {
+                cardBackImage.draw(in: bounds)
+            }
         }
     }
 }

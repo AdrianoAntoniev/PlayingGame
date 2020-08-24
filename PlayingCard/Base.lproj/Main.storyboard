@@ -22,6 +22,11 @@
                                     <constraint firstAttribute="width" secondItem="Bio-QX-JFv" secondAttribute="height" multiplier="5:8" id="O04-Cb-xE4"/>
                                     <constraint firstAttribute="width" priority="750" constant="800" id="hqQ-3L-Tac"/>
                                 </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="rank">
+                                        <integer key="value" value="14"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemTealColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
