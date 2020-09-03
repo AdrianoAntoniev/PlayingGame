@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D75DEF7525015C3F008770B5 /* CardBehavior.swift in Sources */ = {isa = PBXBuildFile; fileRef = D75DEF7425015C3F008770B5 /* CardBehavior.swift */; };
 		D76A808524F1F6E70093E17B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D76A808424F1F6E70093E17B /* AppDelegate.swift */; };
 		D76A808724F1F6E70093E17B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D76A808624F1F6E70093E17B /* SceneDelegate.swift */; };
 		D76A808924F1F6E70093E17B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D76A808824F1F6E70093E17B /* ViewController.swift */; };
@@ -19,6 +20,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D75DEF7425015C3F008770B5 /* CardBehavior.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardBehavior.swift; sourceTree = "<group>"; };
 		D76A808124F1F6E70093E17B /* PlayingCard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PlayingCard.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D76A808424F1F6E70093E17B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D76A808624F1F6E70093E17B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -66,6 +68,7 @@
 				D76A809924F1F79C0093E17B /* PlayingCard.swift */,
 				D76A809B24F1FBFE0093E17B /* PlayingCardDeck.swift */,
 				D76A808824F1F6E70093E17B /* ViewController.swift */,
+				D75DEF7425015C3F008770B5 /* CardBehavior.swift */,
 				D76A808A24F1F6E70093E17B /* Main.storyboard */,
 				D76A808D24F1F6E80093E17B /* Assets.xcassets */,
 				D76A809824F1F7330093E17B /* Supporting Files */,
@@ -161,6 +164,7 @@
 				D76A809C24F1FBFE0093E17B /* PlayingCardDeck.swift in Sources */,
 				D76A809A24F1F79C0093E17B /* PlayingCard.swift in Sources */,
 				D76A808724F1F6E70093E17B /* SceneDelegate.swift in Sources */,
+				D75DEF7525015C3F008770B5 /* CardBehavior.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
